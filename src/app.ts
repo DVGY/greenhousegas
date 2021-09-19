@@ -26,6 +26,13 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json({ limit: '10kb' }));
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message:
+      'use https://greenhousegas-server.herokuapp.com/api-docs to get started with docs',
+  });
+});
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 app.use('/api/v1/countries', greenhouseGasRouter);
 
