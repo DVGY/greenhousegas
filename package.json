@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js NODE_ENV=production",
+    "start": "node src/server.js NODE_ENV=production",
     "dev": "nodemon -L src/server.ts",
     "build": "tsc",
     "test": "jest --watchAll --no-cache",
