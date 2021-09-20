@@ -19,7 +19,7 @@ if (!process.env.MONGO_CONNECTION_STRING) {
 if (!process.env.MONGO_PASSWORD) {
   throw new Error('process.env.MONGO_PASSWORD not defined');
 }
-if (!process.env.MONGO_DEV_DB) {
+if (!process.env.MONGO_PROD_DB) {
   throw new Error('process.env.MONGO_DEV_DB not defined');
 }
 
@@ -29,7 +29,7 @@ if (!process.env.NODE_ENV) {
 
 DB = process.env.MONGO_CONNECTION_STRING.replace(
   '<DATABASE>',
-  process.env.MONGO_DEV_DB
+  process.env.MONGO_PROD_DB
 );
 
 DB = DB.replace('<PASSWORD>', process.env.MONGO_PASSWORD);

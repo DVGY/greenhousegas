@@ -5,6 +5,7 @@ import swaggerUI from 'swagger-ui-express';
 
 import docs from '../docs';
 import greenhouseGasRouter from './routes/greenhouseGasRoutes';
+import { errorHandler } from './utils/errorHandler';
 
 const app = express();
 
@@ -43,6 +44,6 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// app.use(errorHandler);
+app.use(errorHandler);
 
 export { app };

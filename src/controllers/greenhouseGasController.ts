@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import GreenhouseGas, { IGreenhouseGas } from '../models/greenhouseGasModel';
 import APIFeatures from '../utils/APIFeatures';
+import { isValidQueryParamsKeys } from '../utils/helperFunctions';
 
 export const createGreenhouseGasInfo = async (
   req: Request,
@@ -18,6 +19,11 @@ export const getAllGreenhouseGasInfo = async (
   next: NextFunction
 ): Promise<void> => {
   const queryProps: greenhouseGasReqQuery = { ...req.query };
+
+  const { isValid, inValidQueryKey } = isValidQueryParamsKeys(queryProps);
+  if (!isValid) {
+    return next(new Error(`Query parameter ${inValidQueryKey} is not valid`));
+  }
 
   const features = new APIFeatures<IGreenhouseGas, greenhouseGasReqQuery>(
     GreenhouseGas.find(),
